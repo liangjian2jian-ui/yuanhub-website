@@ -142,7 +142,7 @@ nav a:hover {
    ======================================= */
    .hero {
     /* 移除渐变背景，替换为图片 */
-    background: url('../images/yuanhub_cover.png') no-repeat center center; 
+    background: url('../images/laobanniang.JPG') no-repeat center center; 
     
     /* 确保图片覆盖整个区块 */
     background-size: cover; 
@@ -244,7 +244,7 @@ nav a:hover {
 }
 
 .category-btn.active {
-    background: #f59e0b;
+    background: #d97706;
     color: white;
 }
 
@@ -320,7 +320,7 @@ object-fit: cover;
 /* =======================================
    *** ABOUT SECTION 样式 (已优化) ***
    ======================================= */
-   .about-section {
+.about-section {
     background: #fef3c7;
     padding: 4rem 2rem;
 }
@@ -514,7 +514,7 @@ footer p {
         border-radius: 8px; 
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25); 
         padding: 0.5rem 0; 
-        
+         
         /* 隐藏和弹出效果 */
         opacity: 0; 
         visibility: hidden; 
@@ -544,6 +544,7 @@ footer p {
         text-align: left;
         border-bottom: none; 
         font-size: 1.1rem;
+        text-align: center;
     }
     
     nav a:hover {
