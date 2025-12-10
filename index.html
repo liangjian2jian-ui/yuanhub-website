@@ -1,565 +1,198 @@
-/* 定义 CSS 变量方便统一修改字体大小 */
-:root {
-    /* 基础字体大小 */
-    --font-size-base: 1rem; /* 16px */
-    /* 标题字体大小 */
-    --font-size-h1: 2rem;
-    --font-size-h2: 2.5rem;
-    --font-size-h3: 1.25rem;
-    /* 菜单卡片字体大小 */
-    --dish-name-size: 1.15rem; 
-    --dish-price-size: 1.4rem;  
-}
-.nav-close-overlay {
-    display: none;
-}
-.menu-toggle {
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 2.2rem;
-    cursor: pointer;
-    display: none; /* 默认在桌面端隐藏 */
-    z-index: 1001; /* 确保它在最上层 */
-    padding: 0 0.5rem;
-}
-.nav-toggle-checkbox {
-    /* 隐藏实际的复选框，但保留其功能 */
-    display: none;
-}
-
-.menu-toggle {
-    /* 汉堡图标样式 */
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 2.2rem;
-    cursor: pointer;
-    display: none; /* 默认在桌面端隐藏 */
-    z-index: 1001; /* 确保它在最上层 */
-    padding: 0 0.5rem;
-}
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
-    background: linear-gradient(to bottom, #fffbeb, #fef3c7);
-    min-height: 100vh;
-    font-size: var(--font-size-base);
-}
-
-/* =======================================
-   *** HEADER & NAVIGATION (已修正) ***
-   ======================================= */
-header {
-    background: #d97706; /* 保持橙色背景 */
-    color: white; 
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-/* =======================================
-   *** HEADER & LOGO 样式 1 ***
-   ======================================= */
-.header-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative; /* <<< 新增：作为弹出菜单的定位参考点 >>> */
-}
-/* =======================================
-   *** HEADER & LOGO 样式 2 ***
-======================================= *
-.header-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1.5rem;
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
- 
-    gap: 3rem; 
-    position: relative;
-}
-======================================= */
-
-.logo-img {
-    height: 70px; /* 增大 Logo 图片的高度 */
-    width: auto;  /* 宽度自适应，保持纵横比 */
-    display: block; 
-    align: center;
-}
-.p1 {
-    font-size: 1.25rem; /* 比基础字体 (1rem) 和 hero-desc (1.1rem) 更大 */
-    font-weight: bold; /* 加粗 */
-    color: #374151; /* 使用深灰色，确保在浅色背景上清晰可见 */
-    line-height: 1.6;
-    margin-bottom: 1rem; /* 增加下方间距 */
-}
-/* --- 导航栏容器样式 --- */
-nav {
-    display: flex;
-    gap: 1rem; /* 增加链接之间的间距 */
-}
-
-/* --- 导航链接 (现在的“格子”或按钮) 样式 --- */
-nav a {
-    /* 基础样式 */
-    color: #d97706; /* <<< 关键修正：确保文字是主题色，而不是白色 >>> */
-    text-decoration: none;
-    font-size: 1rem; 
-    font-weight: 600; 
-    padding: 0.5rem 1rem; 
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yuan Hub 缘合 - 美食店</title>
     
-    /* 格子/按钮外观 */
-    background: white; /* 设置白色背景 */
-    border-radius: 8px; 
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    <link rel="stylesheet" href="css/style.css">
     
-    /* 动画效果 */
-    transition: all 0.3s ease; 
-}
+    </head>
+<body>
+    <header>
+        <div class="header-content">
 
-/* --- 悬停效果：增加视觉反馈 --- */
-nav a:hover {
-    color: white; /* 悬停时文字变为白色 */
-    background: #f59e0b; /* 悬停时背景变为橙色 */
-    transform: translateY(-1px); 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-}
+            <div class="logo">
+                <img src="images/yuanhub_logo_clear.png" alt="Yuan Hub 缘合美食 Logo" class="logo-img">
+            </div>
 
-/* =======================================
-   *** HERO SECTION ***
-   ======================================= */
-   .hero {
-    /* 移除渐变背景，替换为图片 */
-    background: url('../images/laobanniang.JPG') no-repeat center center; 
+            <input type="checkbox" id="nav-toggle" class="nav-toggle-checkbox">
     
-    /* 确保图片覆盖整个区块 */
-    background-size: cover; 
-    
-    /* 添加一个深色/半透明蒙版，以保证白色文字清晰可见 */
-    background-color: rgba(0, 0, 0, 0.4); 
-    background-blend-mode: multiply; /* 混合模式使背景图变暗，文字突出 */
+            <label for="nav-toggle" class="menu-toggle">☰</label>
+            
+            <label for="nav-toggle" class="nav-close-overlay"></label>  
 
-    color: white;
-    padding: 8rem 2rem;
-    text-align: center;
-    /* 增加最小高度，确保图片有足够的展示空间 */
-    min-height: 400px; 
-}
+            <nav>
+                <a href="#menu">菜单</a>
+                <a href="#about">关于</a>
+                <a href="#contact">联系</a>
+            </nav>
+        </div>
+    </header>
 
-/* 保持 hero 区域内的文字颜色为白色，以便在深色背景上显示 */
-.hero h2 {
-    font-size: 3rem;
-    /* 确保这里添加了 margin-bottom: 1.5rem; */
-    /* 我在您上次的代码中没看到这个单独的定义，所以需要补上 */
-    margin-bottom: 1.5rem; 
-    font-weight: bold;
-}
-.hero-subtitle,
-.hero-desc {
-    color: white; 
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* 给文字添加阴影，增强对比度 */
-}
-.hero-desc {
-    font-size: 1.1rem;
-    color: #fde68a;
-    max-width: 800px;
-    /* 增加底边距，将描述与按钮分开 */
-    margin: 0 auto 3rem; /* 从 2rem 增加到 3rem */
-    line-height: 1.6;
-}
+    <section class="hero">
+        <h2>欢迎来到 Yuan Hub 缘合</h2>
+        <p class="hero-subtitle">品味鲜美螃蟹 · 享受海鲜盛宴</p>
+        <p class="hero-desc">精选新鲜海鲜，地道烧烤工艺，为您呈现最地道的美味体验</p>
+        <a href="#menu" class="hero-btn">查看菜单</a>
+    </section>
 
-/* 确保 hero-desc 的辅助颜色也可见 */
-.hero-desc {
-    color: #fde68a; /* 辅助黄色保持可见 */
-}
-
-.hero-btn {
-    display: inline-block;
-    background: white;
-    color: #d97706;
-    padding: 1rem 2rem;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.1rem;
-    transition: all 0.3s;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-.hero-btn:hover {
-    background: #fffbeb;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 8px rgba(0,0,0,0.15);
-}
-
-/* =======================================
-   *** MENU SECTION ***
-   ======================================= */
-.menu-section {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 4rem 2rem;
-}
-
-.section-title {
-    font-size: var(--font-size-h2);
-    text-align: center;
-    color: #78350f;
-    margin-bottom: 3rem;
-    font-weight: bold;
-}
-
-.category-filter {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 3rem;
-}
-
-.category-btn {
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 50px;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    background: white;
-    color: #b45309;
-    font-family: inherit;
-}
-
-.category-btn.active {
-    background: #d97706;
-    color: white;
-}
-
-.category-btn:hover {
-    background: #fef3c7;
-}
-
-.category-btn.active:hover {
-    background: #d97706;
-}
-
-.dishes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.dish-card {
-    background: white;
-    border-radius: 1rem;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: all 0.3s;
-}
-.dish-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 12px rgba(0,0,0,0.15);
-}
-.dish-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;      /* 核心通用性：图片填充容器并裁切 */
-    object-position: center; /* 确保图片主体居中 */
-}
-.dish-image {
-    background: linear-gradient(135deg, #fde68a, #fef08a);
-    height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-.dish-image {
-    /* ... 其他样式 ... */
-    overflow: hidden; /* 关键修正：确保图片溢出部分被裁切 */
-}
-.dish-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-object-fit: cover; 
-    object-position: center; /* <<< 关键修正：确保图片内容居中显示 >>> */
-}
-
-.dish-info {
-    padding: 1.5rem;
-}
-
-.dish-name {
-    font-size: var(--dish-name-size);
-    font-weight: bold;
-    color: #1f2937;
-    margin-bottom: 0.5rem;
-}
-
-.dish-price {
-    font-size: var(--dish-price-size);
-    font-weight: bold;
-    color: #d97706;
-}
-
-
-/* =======================================
-   *** ABOUT SECTION 样式 (已优化) ***
-   ======================================= */
-.about-section {
-    background: #fef3c7;
-    padding: 4rem 2rem;
-}
-
-.about-content {
-    max-width: 900px; /* 限制最大宽度，提高可读性 */
-    margin: 0 auto;  /* 容器块居中 */
-    text-align: center; /* **关键修改：文本居中对齐** */
-}
-
-.about-content p {
-    font-size: 1.1rem;
-    color: #374151;
-    line-height: 1.8;
-    margin-bottom: 1rem;
-}
-/* =======================================
-   *** CONTACT & FOOTER ***
-   ======================================= */
-.contact-section {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 4rem 2rem;
-}
-
-.contact-grid {
-    display: grid;
-    /* 核心：自动填充，每张卡片最小宽度 250px */
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem; /* 关键：卡片之间的水平和垂直间距，解决拥挤问题 */
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.contact-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 1rem;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    text-align: center;
-}
-
-.contact-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-
-.contact-card h3 {
-    font-size: 1.25rem;
-    color: #1f2937;
-    margin-bottom: 1rem; /* 增加标题和下方联系信息的间距 */
-    font-weight: bold;
-}
-
-.contact-card p {
-    color: #6b7280;
-    line-height: 1.6;
-}
-/* 联系信息垂直间距修正 */
-.contact-detail {
-    margin-top: 0.6rem; /* 增加行间距 */
-    margin-bottom: 0.6rem; 
-    font-size: 1.15rem;
-    color: #4b5563;
-    font-weight: 500;
-    line-height: 1.4; 
-}
-
-footer {
-    background: #78350f;
-    color: white;
-    padding: 2rem;
-    text-align: center;
-}
-
-footer p {
-    margin-bottom: 0.5rem;
-}
-
-.footer-subtitle {
-    color: #fbbf24;
-}
-/* =======================================
-   *** MENU SECTION - 添加水印效果 ***
-   ======================================= */
-
-   .dish-image {
-    background: linear-gradient(135deg, #fde68a, #fef08a);
-    height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    position: relative; /* <<< 关键：作为水印定位的参考 >>> */
-}
-
-/* 新增：使用伪元素模拟水印 */
-.dish-image::after {
-    content: ''; /* 伪元素必须有 content 属性 */
-    
-    /* 引用您的 Logo 图片作为水印，注意路径 */
-    background: url('../images/yuanhub_logo_clear.png') no-repeat center center; 
-    
-    /* 让 Logo 居中显示，并设置透明度 */
-    background-size: 300px auto; /* 控制 Logo 水印的大小 */
-    opacity: 0.4; /* 设置透明度，让水印不影响观看图片 */
-    
-    /* 绝对定位，覆盖整个 dish-image 区域 */
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 10; /* 确保它在图片上方 */
-    pointer-events: none; /* 确保用户可以点击图片下方的元素 */
-}
-/* =======================================
-   *** CONTACT SECTION - 社交图标样式 ***
-   ======================================= */
-
-/* 容器布局：让图标横向排列 */
-.logo-image-icon {
-    display: flex;
-    justify-content: center; 
-    align-items: center; /* 确保图标垂直居中 */
-    gap: 1.5rem; /* 增加图标之间的间距，从 1rem 增加到 1.5rem */
-    margin-bottom: 1.5rem; /* 增加图标和下方标题的间距 */
-    font-size: 0; /* 隐藏可能存在的默认字符间距 */
-}
-
-/* 图标图片尺寸控制 */
-.logo-image-icon {
-    display: flex;
-    justify-content: center; /* 关键：水平居中 */
-    align-items: center; /* 关键：垂直居中 */
-    gap: 1.5rem; 
-    margin-bottom: 1.5rem; 
-    font-size: 0; 
-}
-/* 图标图片尺寸控制 (已优化) */
-.logo-image-icon-img {
-    width: 40px; /* 增大图标宽度 */
-    height: 40px; /* 增大图标高度 */
-    object-fit: contain; /* 确保图片完整显示在 40x40 区域内 */
-    transition: transform 0.2s;
-}
-.logo-image-icon-img:hover {
-    transform: scale(1.15); /* 轻微放大，增加互动感 */
-}
-/* =======================================
-   *** MEDIA QUERIES (已修正移动菜单逻辑 - 添加关闭层) ***
-   ======================================= */
-   @media (max-width: 768px) {
-    
-    .header-content {
-        padding: 1rem 1.5rem;
-    }
-
-    /* 1. 汉堡菜单：在小屏幕上显示 */
-    .menu-toggle {
-        display: block; 
-    }
-    
-    /* 2. 全屏关闭覆盖层：仅在手机模式下和菜单打开时显示 */
-    .nav-close-overlay {
-        /* 覆盖 desktop display:none; */
-        display: block; 
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        z-index: 999; /* 必须比 <nav> (1000) 小，但比页面内容大 */
-        background: rgba(0, 0, 0, 0.1); /* 稍微变暗，增强视觉效果 */
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.3s;
-    }
-    
-    /* 3. 移动端导航栏：小格子定位 */
-    nav {
-        display: flex; 
-        flex-direction: column; 
+    <section id="menu" class="menu-section">
+        <h2 class="section-title">菜单</h2>
         
-        position: absolute; 
-        top: 65px; 
-        right: 1.5rem; 
-        
-        width: 180px; 
-        background: white; 
-        border-radius: 8px; 
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25); 
-        padding: 0.5rem 0; 
-         
-        /* 隐藏和弹出效果 */
-        opacity: 0; 
-        visibility: hidden; 
-        transform: translateY(-10px); 
-        transition: all 0.3s ease-in-out; 
-        z-index: 1000; /* 确保它在关闭层和页面内容上方 */
-    }
-    
-    /* 4. 核心技巧：当复选框被选中时，显示菜单和小格子 */
-    .nav-toggle-checkbox:checked ~ nav { 
-        opacity: 1; 
-        visibility: visible;
-        transform: translateY(0); 
-    }
-    .nav-toggle-checkbox:checked ~ .nav-close-overlay { 
-        opacity: 1; 
-        visibility: visible;
-    }
-    
-    /* 5. 调整链接样式 */
-    nav a {
-        background: transparent; 
-        color: #d97706; 
-        box-shadow: none;
-        border-radius: 0;
-        padding: 0.75rem 1rem; 
-        text-align: left;
-        border-bottom: none; 
-        font-size: 1.1rem;
-        text-align: center;
-    }
-    
-    nav a:hover {
-        background: #fef3c7;
-        color: #d97706;
-    }
+        <div class="category-filter" id="categoryFilter">
+            <button class="category-btn active" data-category="all">🍽️ 全部菜品</button>
+            <button class="category-btn" data-category="crab">🦀 螃蟹烧烤</button>
+            <button class="category-btn" data-category="seafood">🦞🦐 海鲜烧烤</button>
+            <button class="category-btn" data-category="stirfry">🥘 小炒</button>
+            <button class="category-btn" data-category="noodles">🍜 面食</button>
+            <button class="category-btn" data-category="rice">🍚 饭食</button>
+            <button class="category-btn" data-category="drinks">🥤 饮料</button>
+        </div>
 
-    /* 其他 media query 保持不变 */
-    .hero h2 {
-        font-size: 2rem;
-    }
-    .hero-subtitle {
-        font-size: 1.2rem;
-    }
-    .dishes-grid {
-        grid-template-columns: 1fr;
-    }
-}
+        <div class="dishes-grid" id="dishesGrid"></div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="about-content">
+            <h2 class="section-title">关于<br>Yuan Hub 缘合</h2>
+            <p>Yuan Hub 缘合是一家专注于海鲜烧烤的特色餐厅。我们坚持使用最新鲜的食材，以传统烧烤工艺结合现代烹饪理念，为每一位顾客带来难忘的美食体验。</p>
+            <p>无论是香气四溢的烤螃蟹，还是鲜嫩多汁的海鲜烧烤，每一道菜品都倾注了我们的用心与热情。期待与您在 Yuan Hub 缘合相遇，共享美食时光。</p>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">联系我们</h2>
+        
+        <div class="contact-grid"> 
+            <div class="contact-card">
+                <div class="contact-icon logo-image-icon">
+                    <img src="images/whatsapp_logo.png" alt="whatsapp_logo" class="logo-image-icon-img">
+                </div>
+                <h3>Whatsapp/Call</h3>
+                <p class="contact-detail">Peggie 011-6283 5972</p>
+                <p class="contact-detail">Jerry 011-6283 5972</p>
+            </div>
+            
+            <div class="contact-card">
+                <div class="contact-icon logo-image-icon">
+                    <img src="images/google_maps_logo.png" alt="google_maps_icon" class="logo-image-icon-img">
+                    <img src="images/waze_logo.png" alt="waze_icon" class="logo-image-icon-img">
+                </div>
+                <h3>Waze / Google Maps</h3>
+                <p class="contact-detail">📍Yuan Hub Jinjang<br>Kuala Lumpur</p>
+            </div>
+            
+            <div class="contact-card">
+                <div class="contact-icon logo-image-icon">
+                    <img src="images/facebook_icon.png" alt="facebook_icon" class="logo-image-icon-img">
+                    <img src="images/instagram_icon.png" alt="instagram_icon" class="logo-image-icon-img">
+                </div>
+                <h3>社交媒体</h3>
+                <p class="contact-detail">yuanhubfb<br>yuanhubig</p>
+            </div>
+            
+            <div class="contact-card">
+                <div class="contact-icon">🕒</div>
+                <h3>营业时间</h3>
+                <p class="contact-detail">6:00PM - 10:30PM<br>星期一休息</p>
+            </div>
+        </div>
+    </section>
+   
+    <footer>
+        <p>Yuan Hub 缘合美食</p>
+        <p class="footer-subtitle">Yuan Hub 缘合</p>
+    </footer>
+
+    <script>
+        // 优化后的菜品数据结构，请确保这里的图片文件名与您的 images/ 文件夹中的文件名一致
+        var allDishes = [
+            // 螃蟹烧烤
+            { id: 1, name: '特色烤螃蟹', category: 'crab', price: 'RM 12 /100G', image: 'images/grill_oyster.png', alt: '特色烤螃蟹' },
+            { id: 2, name: '蒜蓉烤螃蟹', category: 'crab', price: 'RM 65', image: 'images/xiu_dan_chille.png', alt: '蒜蓉烤螃蟹' },
+            { id: 3, name: '香辣烤螃蟹', category: 'crab', price: 'RM 65', image: 'images/crab_sb.png', alt: '香辣烤螃蟹' },
+            // 海鲜烧烤
+            { id: 4, name: '炭烤大虾', category: 'seafood', price: 'RM 45', image: 'images/grill_oyster2.png', alt: '炭烤大虾' },
+            { id: 5, name: 'SF.12 炭烤扇贝', category: 'seafood', price: 'RM 38', image: 'images/grill_scallop.png', alt: '炭烤扇贝' },
+            { id: 6, name: '炭烤生蚝', category: 'seafood', price: 'RM 24', image: 'images/grill_oyster2.png', alt: '炭烤生蚝' }, // 使用您提供的文件名
+            // 小炒
+            { id: 7, name: '烟熏螃蟹', category: 'stirfry', price: 'RM 28', image: 'images/smokin_ketam.png', alt: '宫保鸡丁' },
+            { id: 8, name: '炒冬粉', category: 'stirfry', price: 'RM 26', image: 'images/fry_glass_noodle.png', alt: '炒冬粉' },
+            { id: 9, name: '麻婆豆腐', category: 'stirfry', price: 'RM 22', image: 'images/ah_po_taufu.png', alt: '麻婆豆腐' },
+            // 面食
+            { id: 10, name: '招牌炒面', category: 'noodles', price: 'RM 18', image: 'images/fry_mee.png', alt: '招牌炒面' },
+            { id: 11, name: '海鲜拉面', category: 'noodles', price: 'RM 25', image: 'images/noodles-seafood.jpg', alt: '海鲜拉面' },
+            { id: 12, name: '牛肉刀削面', category: 'noodles', price: 'RM 22', image: 'images/moo.png', alt: '牛肉刀削面' },
+            // 饭食
+            { id: 13, name: '招牌炒饭', category: 'rice', price: 'RM 18', image: 'images/tomyam_fried_rice.png', alt: '招牌炒饭' },
+            { id: 14, name: '海鲜炒饭', category: 'rice', price: 'RM 25', image: 'images/noodles-seafood.jpg', alt: '海鲜炒饭' },
+            { id: 15, name: '泰式炒饭', category: 'rice', price: 'RM 22', image: 'images/noodles-beef.jpg', alt: '泰式炒饭' },
+            // 饮料
+            { id: 16, name: '招牌老虎', category: 'drinks', price: 'RM 18', image: 'images/tiger_beer_can.png', alt: '招牌老虎' },
+            { id: 17, name: '海鲜炒饭', category: 'rice', price: 'RM 25', image: 'images/noodles-seafood.jpg', alt: '海鲜炒饭' },
+            { id: 18, name: '泰式炒饭', category: 'rice', price: 'RM 22', image: 'images/noodles-beef.jpg', alt: '泰式炒饭' }
+
+        ];  
+
+        // 动态渲染菜品函数 (无变化)
+        function renderDishes(category) {
+            var grid = document.getElementById('dishesGrid');
+            var filtered = category === 'all' ? allDishes : allDishes.filter(function(d) {
+                return d.category === category;
+            });
+            
+            var html = '';
+            for (var i = 0; i < filtered.length; i++) {
+                var dish = filtered[i];
+                var imageContent = '';
+                
+                // 图片路径渲染
+                if (dish.image.length <= 2) { 
+                    imageContent = dish.image; // 渲染 emoji
+                } else {
+                    imageContent = '<img src="' + dish.image + '" alt="' + dish.alt + '">'; // 渲染图片
+                }
+                
+                html += '<div class="dish-card">';
+                html += '  <div class="dish-image">' + imageContent + '</div>';
+                html += '  <div class="dish-info">';
+                html += '    <div class="dish-name">' + dish.name + '</div>';
+                html += '    <div class="dish-price">' + dish.price + '</div>';
+                html += '  </div>';
+                html += '</div>';
+            }
+            grid.innerHTML = html;
+        }
+
+        // 分类按钮点击事件 (无变化)
+        var buttons = document.querySelectorAll('.category-btn');
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].addEventListener('click', function() {
+                var allButtons = document.querySelectorAll('.category-btn');
+                for (var j = 0; j < allButtons.length; j++) {
+                    allButtons[j].classList.remove('active');
+                }
+                this.classList.add('active');
+                renderDishes(this.getAttribute('data-category'));
+            });
+        }
+
+        // 导航平滑滚动 (无变化)
+        var navLinks = document.querySelectorAll('a[href^="#"]');
+        for (var i = 0; i < navLinks.length; i++) {
+            navLinks[i].addEventListener('click', function(e) {
+                e.preventDefault();
+                var targetId = this.getAttribute('href');
+                var target = document.querySelector(targetId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        }
+
+        // 页面加载后首次渲染全部菜品
+        renderDishes('all');
+    </script>
+</body>
+</html>
