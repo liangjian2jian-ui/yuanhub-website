@@ -1,0 +1,446 @@
+/* =======================================
+   *** 全局与基础样式 ***
+   ======================================= */
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
+    background: linear-gradient(to bottom, #fffbeb, #fef3c7);
+    min-height: 100vh;
+    font-size: 1rem;
+}
+
+/* =======================================
+   *** HEADER & LOGO 样式 ***
+   ======================================= */
+header {
+    background: #d97706;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* 关键：为移动端菜单的绝对定位提供参考点 */
+    position: relative;
+}
+
+/* 修正后的 Logo 图片样式 */
+.logo-img {
+    height: 70px; /* 增大 Logo 图片的高度 */
+    width: auto;
+    display: block; 
+}
+
+/* 导航链接 */
+nav {
+    display: flex;
+    gap: 2rem;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #fde68a;
+}
+
+/* =======================================
+   *** HERO SECTION 样式 ***
+   ======================================= */
+.hero {
+    background: linear-gradient(to right, #f59e0b, #eab308);
+    color: white;
+    padding: 6rem 2rem;
+    text-align: center;
+}
+
+.hero h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.hero-desc {
+    font-size: 1.1rem;
+    color: #fde68a;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+}
+
+.hero-btn {
+    display: inline-block;
+    background: white;
+    color: #d97706;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.hero-btn:hover {
+    background: #fffbeb;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+}
+
+/* =======================================
+   *** MENU SECTION - 基础与卡片样式 ***
+   ======================================= */
+.menu-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    color: #78350f;
+    margin-bottom: 3rem;
+    font-weight: bold;
+}
+
+/* 分类按钮 */
+.category-filter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+.category-btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background: white;
+    color: #b45309;
+    font-family: inherit;
+}
+
+.category-btn.active {
+    background: #f59e0b;
+    color: white;
+}
+
+.category-btn:hover {
+    background: #fef3c7;
+}
+
+.category-btn.active:hover {
+    background: #d97706;
+}
+
+/* 菜品网格 */
+.dishes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.dish-card {
+    background: white;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+}
+
+.dish-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+}
+
+/* 图片容器 */
+.dish-image {
+    background: linear-gradient(135deg, #fde68a, #fef08a);
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    overflow: hidden; /* 确保图片溢出部分被裁切 */
+}
+
+/* 核心优化：图片在容器内填充并居中 */
+.dish-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;      /* 填充容器，多余部分裁切 */
+    object-position: center; /* 确保图片主体居中 */
+}
+
+.dish-info {
+    padding: 1.5rem;
+}
+
+.dish-name {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+}
+
+.dish-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #d97706;
+}
+
+/* =======================================
+   *** ABOUT SECTION 样式 ***
+   ======================================= */
+.about-section {
+    background: #fef3c7;
+    padding: 4rem 2rem;
+}
+
+.about-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about-content p {
+    font-size: 1.1rem;
+    color: #374151;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+/* =======================================
+   *** CONTACT SECTION - 卡片与图标修正 ***
+   ======================================= */
+.contact-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+/* 卡片容器：确保卡片之间的间距和布局 */
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem; /* 卡片之间的间距 */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.contact-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+/* 图标容器布局：让图标横向排列 */
+.logo-image-icon {
+    display: flex;
+    justify-content: center; 
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0; 
+}
+
+/* 图标图片尺寸控制 */
+.logo-image-icon-img {
+    width: 35px; /* 设置图标宽度 */
+    height: 35px; /* 设置图标高度 */
+    object-fit: contain; 
+    transition: transform 0.2s;
+}
+
+.logo-image-icon-img:hover {
+    transform: scale(1.1);
+}
+
+.contact-card h3 {
+    font-size: 1.25rem;
+    color: #1f2937;
+    margin-bottom: 0.75rem; /* 增加标题下方的间距 */
+    font-weight: bold;
+}
+
+/* 联系信息垂直间距修正 */
+.contact-detail {
+    margin-top: 0.5rem; 
+    margin-bottom: 0.5rem; 
+    font-size: 1.15rem;
+    color: #4b5563;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+/* =======================================
+   *** FOOTER 样式 ***
+   ======================================= */
+footer {
+    background: #78350f;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+footer p {
+    margin-bottom: 0.5rem;
+}
+
+.footer-subtitle {
+    color: #fbbf24;
+}
+
+/* =======================================
+   *** 移动端菜单 CSS Hack 样式 (桌面端默认隐藏) ***
+   ======================================= */
+
+/* 1. 隐藏实际的复选框 */
+.nav-toggle-checkbox {
+    display: none;
+}
+
+/* 2. 汉堡图标样式 (桌面端隐藏) */
+.menu-toggle {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 2.2rem;
+    cursor: pointer;
+    display: none; /* 桌面端默认隐藏 */
+    z-index: 1001; 
+    padding: 0 0.5rem;
+}
+
+/* 3. 全屏关闭覆盖层 (桌面端隐藏) */
+.nav-close-overlay {
+    display: none;
+}
+
+/* =======================================
+   *** MEDIA QUERIES (移动端布局) ***
+   ======================================= */
+@media (max-width: 768px) {
+    
+    .header-content {
+        padding: 1rem 1.5rem;
+    }
+
+    /* 1. 汉堡菜单：在小屏幕上显示 */
+    .menu-toggle {
+        display: block; 
+    }
+    
+    /* 2. 全屏关闭覆盖层：仅在手机模式下和菜单打开时显示 */
+    .nav-close-overlay {
+        display: block; 
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 999; 
+        background: rgba(0, 0, 0, 0.1); 
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s;
+    }
+    
+    /* 3. 移动端导航栏：小格子定位 */
+    nav {
+        display: flex; 
+        flex-direction: column; 
+        
+        position: absolute; 
+        top: 80px; /* 从 Header 下方弹出 */
+        right: 1.5rem; 
+        
+        width: 180px; 
+        background: white; 
+        border-radius: 8px; 
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25); 
+        padding: 0.5rem 0; 
+        
+        /* 隐藏和弹出效果 */
+        opacity: 0; 
+        visibility: hidden; 
+        transform: translateY(-10px); 
+        transition: all 0.3s ease-in-out; 
+        z-index: 1000; 
+    }
+    
+    /* 4. 核心技巧：当复选框被选中时，显示菜单和小格子 */
+    .nav-toggle-checkbox:checked ~ nav { 
+        opacity: 1; 
+        visibility: visible;
+        transform: translateY(0); 
+    }
+    .nav-toggle-checkbox:checked ~ .nav-close-overlay { 
+        opacity: 1; 
+        visibility: visible;
+    }
+    
+    /* 5. 调整移动端链接样式 */
+    nav a {
+        background: transparent; 
+        color: #d97706; 
+        padding: 0.75rem 1rem; 
+        text-align: left;
+        border-bottom: none; 
+        font-size: 1.1rem;
+    }
+    
+    nav a:hover {
+        background: #fef3c7;
+        color: #d97706;
+    }
+
+    /* 其他 media query 保持不变 */
+    .hero h2 {
+        font-size: 2rem;
+    }
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    .dishes-grid {
+        grid-template-columns: 1fr;
+    }
+    .contact-grid {
+        gap: 1.5rem; 
+    }
+}

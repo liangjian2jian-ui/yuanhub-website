@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yuan Hub 缘合 - 美食店</title>
+    <style>
+        /* CSS 样式保持不变，以确保外观一致 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
+            background: linear-gradient(to bottom, #fffbeb, #fef3c7);
+            min-height: 100vh;
+        }
+
+        header {
+            background: #d97706;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.25rem;
+        }
+
+        .logo p {
+            color: #fde68a;
+            font-size: 0.9rem;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #fde68a;
+        }
+
+        .hero {
+            background: linear-gradient(to right, #f59e0b, #eab308);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: #fde68a;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background: white;
+            color: #d97706;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .hero-btn:hover {
+            background: #fffbeb;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        }
+
+        .menu-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            color: #78350f;
+            margin-bottom: 3rem;
+            font-weight: bold;
+        }
+
+        .category-filter {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .category-btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: white;
+            color: #b45309;
+            font-family: inherit;
+        }
+
+        .category-btn.active {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .category-btn:hover {
+            background: #fef3c7;
+        }
+
+        .category-btn.active:hover {
+            background: #d97706;
+        }
+
+        .dishes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .dish-card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .dish-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+        }
+
+        .dish-image {
+            background: linear-gradient(135deg, #fde68a, #fef08a);
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            overflow: hidden; /* 确保图片不溢出 */
+        }
+
+        .dish-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 确保图片覆盖整个区域 */
+        }
+
+        .dish-info {
+            padding: 1.5rem;
+        }
+
+        .dish-name {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .dish-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #d97706;
+        }
+
+        .about-section {
+            background: #fef3c7;
+            padding: 4rem 2rem;
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            /* text-center; - 此处在原代码中无效，如果需要居中，应使用 text-align: center; */
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            color: #374151;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .contact-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            font-size: 1.25rem;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .contact-card p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        footer {
+            background: #78350f;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-subtitle {
+            color: #fbbf24;
+        }
+
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            nav {
+                display: none;
+            }
+            .dishes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <h1>Yuan Hub</h1>
+                <p>缘合美食</p>
+            </div>
+            <nav>
+                <a href="#menu">菜单</a>
+                <a href="#about">关于</a>
+                <a href="#contact">联系</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h2>欢迎来到 Yuan Hub 缘合</h2>
+        <p class="hero-subtitle">品味鲜美螃蟹 · 享受海鲜盛宴</p>
+        <p class="hero-desc">精选新鲜海鲜，地道烧烤工艺，为您呈现最地道的美味体验</p>
+        <a href="#menu" class="hero-btn">查看菜单</a>
+    </section>
+
+    <section id="menu" class="menu-section">
+        <h2 class="section-title">我们的菜单</h2>
+        
+        <div class="category-filter" id="categoryFilter">
+            <button class="category-btn active" data-category="all">🍽️ 全部菜品</button>
+            <button class="category-btn" data-category="crab">🦀 螃蟹烧烤</button>
+            <button class="category-btn" data-category="seafood">🦐 海鲜烧烤</button>
+            <button class="category-btn" data-category="stirfry">🥘 小炒</button>
+            <button class="category-btn" data-category="noodles">🍜 面食</button>
+        </div>
+
+        <div class="dishes-grid" id="dishesGrid"></div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="about-content">
+            <h2 class="section-title">关于 Yuan Hub 缘合</h2>
+            <p>Yuan Hub 缘合是一家专注于海鲜烧烤的特色餐厅。我们坚持使用最新鲜的食材，以传统烧烤工艺结合现代烹饪理念，为每一位顾客带来难忘的美食体验。</p>
+            <p>无论是香气四溢的烤螃蟹，还是鲜嫩多汁的海鲜烧烤，每一道菜品都倾注了我们的用心与热情。期待与您在 Yuan Hub 缘合相遇，共享美食时光。</p>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">联系我们</h2>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon">📞</div>
+                <h3>电话订餐</h3>
+                <p>+60 12-345 6789</p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">📍</div>
+                <h3>地址</h3>
+                <p>123 Jalan Makan,<br>Kuala Lumpur</p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">🕒</div>
+                <h3>营业时间</h3>
+                <p>每天 11:00 - 22:00</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Yuan Hub 缘合美食</p>
+        <p class="footer-subtitle">© 2024 Yuan Hub. 品味生活，从这里开始。</p>
+    </footer>
+
+    <script>
+        // 优化后的菜品数据结构，使用相对图片路径
+        var allDishes = [
+            // 螃蟹烧烤
+            { id: 1, name: '特色烤螃蟹', category: 'crab', price: 'RM 12 /100G', image: 'images/crab-special.jpg', alt: '特色烤螃蟹' },
+            { id: 2, name: '蒜蓉烤螃蟹', category: 'crab', price: 'RM 65', image: 'images/crab-garlic.jpg', alt: '蒜蓉烤螃蟹' },
+            { id: 3, name: '香辣烤螃蟹', category: 'crab', price: 'RM 65', image: 'images/crab-spicy.jpg', alt: '香辣烤螃蟹' },
+            // 海鲜烧烤
+            { id: 4, name: '烤大虾', category: 'seafood', price: 'RM 45', image: 'images/seafood-prawn.jpg', alt: '烤大虾' },
+            { id: 5, name: '烤鱿鱼', category: 'seafood', price: 'RM 38', image: 'images/seafood-squid.jpg', alt: '烤鱿鱼' },
+            { id: 6, name: '烤生蚝', category: 'seafood', price: 'RM 24', image: 'images/seafood-oyster.jpg', alt: '烤生蚝' },
+            // 小炒
+            { id: 7, name: '宫保鸡丁', category: 'stirfry', price: 'RM 28', image: 'images/stirfry-kungpao.jpg', alt: '宫保鸡丁' },
+            { id: 8, name: '鱼香肉丝', category: 'stirfry', price: 'RM 26', image: 'images/stirfry-shreddedpork.jpg', alt: '鱼香肉丝' },
+            { id: 9, name: '麻婆豆腐', category: 'stirfry', price: 'RM 22', image: 'images/stirfry-mapotofu.jpg', alt: '麻婆豆腐' },
+            // 面食
+            { id: 10, name: '招牌炒面', category: 'noodles', price: 'RM 18', image: 'images/noodles-fried.jpg', alt: '招牌炒面' },
+            { id: 11, name: '海鲜拉面', category: 'noodles', price: 'RM 25', image: 'images/noodles-seafood.jpg', alt: '海鲜拉面' },
+            { id: 12, name: '牛肉刀削面', category: 'noodles', price: 'RM 22', image: 'images/noodles-beef.jpg', alt: '牛肉刀削面' }
+        ];
+
+        // 动态渲染菜品函数
+        function renderDishes(category) {
+            var grid = document.getElementById('dishesGrid');
+            var filtered = category === 'all' ? allDishes : allDishes.filter(function(d) {
+                return d.category === category;
+            });
+            
+            var html = '';
+            for (var i = 0; i < filtered.length; i++) {
+                var dish = filtered[i];
+                var imageContent = '';
+                
+                // 检查图片路径是否是占位符（emoji）或图片路径
+                if (dish.image.length <= 2) { // 假设 emoji 长度小于等于 2
+                    imageContent = dish.image;
+                } else {
+                    imageContent = '<img src="' + dish.image + '" alt="' + dish.alt + '">';
+                }
+                
+                html += '<div class="dish-card">';
+                html += '  <div class="dish-image">' + imageContent + '</div>';
+                html += '  <div class="dish-info">';
+                html += '    <div class="dish-name">' + dish.name + '</div>';
+                html += '    <div class="dish-price">' + dish.price + '</div>';
+                html += '  </div>';
+                html += '</div>';
+            }
+            grid.innerHTML = html;
+        }
+
+        // 分类按钮点击事件
+        var buttons = document.querySelectorAll('.category-btn');
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].addEventListener('click', function() {
+                var allButtons = document.querySelectorAll('.category-btn');
+                for (var j = 0; j < allButtons.length; j++) {
+                    allButtons[j].classList.remove('active');
+                }
+                this.classList.add('active');
+                renderDishes(this.getAttribute('data-category'));
+            });
+        }
+
+        // 导航平滑滚动
+        var navLinks = document.querySelectorAll('a[href^="#"]');
+        for (var i = 0; i < navLinks.length; i++) {
+            navLinks[i].addEventListener('click', function(e) {
+                e.preventDefault();
+                var targetId = this.getAttribute('href');
+                var target = document.querySelector(targetId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        }
+
+        // 页面加载后首次渲染全部菜品
+        renderDishes('all');
+    </script>
+</body>
+</html>
