@@ -3,24 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yuan Hub 缘合 - 美店</title>
+    <title>Yuan Hub 缘合 - 美食店</title>
     
     <link rel="stylesheet" href="css/style.css">
-    
-    </head>
+</head>
 <body>
+
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="imgZoom">
+    </div>
+
     <header>
         <div class="header-content">
-
             <div class="logo">
-                <img src="images/yuanhub_logo_clear.png" alt="Yuan Hub 缘合美食 Logo" class="logo-img">
+                <img id="header-logo" src="" alt="Logo" class="logo-img">
             </div>
 
             <input type="checkbox" id="nav-toggle" class="nav-toggle-checkbox">
-    
             <label for="nav-toggle" class="menu-toggle">☰</label>
-            
-            <label for="nav-toggle" class="nav-close-overlay"></label>  
+            <label for="nav-toggle" class="nav-close-overlay"></label>
 
             <nav>
                 <a href="#menu">菜单</a>
@@ -30,169 +32,71 @@
         </div>
     </header>
 
-    <section class="hero">
-        <h2>欢迎来到 Yuan Hub 缘合</h2>
-        <p class="hero-subtitle">品味鲜美螃蟹 · 享受海鲜盛宴</p>
-        <p class="hero-desc">精选新鲜海鲜，地道烧烤工艺，为您呈现最地道的美味体验</p>
-        <a href="#menu" class="hero-btn">查看菜单</a>
+    <section class="hero" id="hero-section">
+        <div class="hero-content">
+            <h2>欢迎来到 Yuan Hub 缘合</h2>
+            <p class="hero-desc">品味鲜美螃蟹 · 享受海鲜盛宴</p>
+            <a href="#menu" class="hero-btn">查看菜单</a>
+        </div>
     </section>
 
     <section id="menu" class="menu-section">
         <h2 class="section-title">菜单</h2>
         
-        <div class="category-filter" id="categoryFilter">
-            <button class="category-btn active" data-category="all">🍽️ 全部菜品</button>
-            <button class="category-btn" data-category="crab">🦀 螃蟹烧烤</button>
-            <button class="category-btn" data-category="seafood">🦞🦐 海鲜烧烤</button>
-            <button class="category-btn" data-category="stirfry">🥘 小炒</button>
-            <button class="category-btn" data-category="noodles">🍜 面食</button>
-            <button class="category-btn" data-category="rice">🍚 饭食</button>
-            <button class="category-btn" data-category="drinks">🥤 饮料</button>
+        <div class="category-filter">
+            <button class="category-btn active" onclick="filterDishes('all', this)">🍽️ 全部</button>
+            <button class="category-btn" onclick="filterDishes('crab', this)">🦀 螃蟹</button>
+            <button class="category-btn" onclick="filterDishes('seafood', this)">🦞 海鲜</button>
+            <button class="category-btn" onclick="filterDishes('stirfry', this)">🥘 小炒</button>
+            <button class="category-btn" onclick="filterDishes('noodles', this)">🍜 面食</button>
+            <button class="category-btn" onclick="filterDishes('rice', this)">🍚 饭食</button>
+            <button class="category-btn" onclick="filterDishes('drinks', this)">🥤 饮料</button>
         </div>
 
         <div class="dishes-grid" id="dishesGrid"></div>
     </section>
 
-    <section id="about" class="about-section">
-        <div class="about-content">
-            <h2 class="section-title">关于<br>Yuan Hub 缘合</h2>
+    <section id="about" class="menu-section" style="background:none;">
+        <h2 class="section-title">关于我们</h2>
+        <div style="text-align: center; max-width: 800px; margin: 0 auto; color: #555; line-height: 1.8;">
             <p>Yuan Hub 缘合是一家专注于海鲜烧烤的特色餐厅。我们坚持使用最新鲜的食材，以传统烧烤工艺结合现代烹饪理念，为每一位顾客带来难忘的美食体验。</p>
-            <p>无论是香气四溢的烤螃蟹，还是鲜嫩多汁的海鲜烧烤，每一道菜品都倾注了我们的用心与热情。期待与您在 Yuan Hub 缘合相遇，共享美食时光。</p>
         </div>
     </section>
 
     <section id="contact" class="contact-section">
         <h2 class="section-title">联系我们</h2>
-        
-        <div class="contact-grid"> 
-            <div class="contact-card">
-                <div class="contact-icon logo-image-icon">
-                    <img src="images/whatsapp_logo.png" alt="whatsapp_logo" class="logo-image-icon-img">
-                </div>
-                <h3>Whatsapp/Call</h3>
-                <p class="contact-detail">Peggie 011-6283 5972</p>
-                <p class="contact-detail">Jerry 011-6283 5972</p>
-            </div>
+        <div class="contact-grid">
             
             <div class="contact-card">
-                <div class="contact-icon logo-image-icon">
-                    <img src="images/google_maps_logo.png" alt="google_maps_icon" class="logo-image-icon-img">
-                    <img src="images/waze_logo.png" alt="waze_icon" class="logo-image-icon-img">
+                <div class="logo-icon-row">
+                    <img src="images/whatsapp_logo.png" alt="Whatsapp">
                 </div>
-                <h3>Waze / Google Maps</h3>
-                <p class="contact-detail">📍Yuan Hub Jinjang<br>Kuala Lumpur</p>
+                <h3>预订 / 咨询</h3>
+                <div id="contact-info-area"></div>
             </div>
-            
+
             <div class="contact-card">
-                <div class="contact-icon logo-image-icon">
-                    <img src="images/facebook_icon.png" alt="facebook_icon" class="logo-image-icon-img">
-                    <img src="images/instagram_icon.png" alt="instagram_icon" class="logo-image-icon-img">
-                </div>
-                <h3>社交媒体</h3>
-                <p class="contact-detail">yuanhubfb<br>yuanhubig</p>
-            </div>
-            
-            <div class="contact-card">
-                <div class="contact-icon">🕒</div>
+                <div style="font-size: 3rem;">🕒</div>
                 <h3>营业时间</h3>
-                <p class="contact-detail">6:00PM - 10:30PM<br>星期一休息</p>
+                <p class="contact-detail" id="display-hours"></p>
+                <p class="contact-detail" id="display-restday" style="color: #d97706; font-weight: bold;"></p>
+            </div>
+
+            <div class="contact-card">
+                <div class="logo-icon-row">
+                    <img src="images/google_maps_logo.png" alt="Maps">
+                    <img src="images/waze_logo.png" alt="Waze">
+                </div>
+                <h3>地址</h3>
+                <p class="contact-detail">Yuan Hub Jinjang<br>Kuala Lumpur</p>
             </div>
         </div>
     </section>
-   
+
     <footer>
-        <p>Yuan Hub 缘合美食</p>
-        <p class="footer-subtitle">Yuan Hub 缘合</p>
+        <p>Yuan Hub 缘合美食 &copy; 2024</p>
     </footer>
 
-    <script>
-        // 优化后的菜品数据结构，请确保这里的图片文件名与您的 images/ 文件夹中的文件名一致
-        var allDishes = [
-            // 螃蟹烧烤
-            { id: 1, name: '特色烤螃蟹', category: 'crab', price: 'RM 12 /100G', image: 'images/grill_oyster.png', alt: '特色烤螃蟹' },
-            { id: 2, name: '蒜蓉烤螃蟹', category: 'crab', price: 'RM 65', image: 'images/xiu_dan_chille.png', alt: '蒜蓉烤螃蟹' },
-            { id: 3, name: '香辣烤螃蟹', category: 'crab', price: 'RM 65', image: 'images/crab_sb.png', alt: '香辣烤螃蟹' },
-            // 海鲜烧烤
-            { id: 4, name: '炭烤大虾', category: 'seafood', price: 'RM 45', image: 'images/grill_oyster2.png', alt: '炭烤大虾' },
-            { id: 5, name: 'SF.12 炭烤扇贝', category: 'seafood', price: 'RM 38', image: 'images/grill_scallop.png', alt: '炭烤扇贝' },
-            { id: 6, name: '炭烤生蚝', category: 'seafood', price: 'RM 24', image: 'images/grill_oyster2.png', alt: '炭烤生蚝' }, // 使用您提供的文件名
-            // 小炒
-            { id: 7, name: '烟熏螃蟹', category: 'stirfry', price: 'RM 28', image: 'images/smokin_ketam.png', alt: '宫保鸡丁' },
-            { id: 8, name: '炒冬粉', category: 'stirfry', price: 'RM 26', image: 'images/fry_glass_noodle.png', alt: '炒冬粉' },
-            { id: 9, name: '麻婆豆腐', category: 'stirfry', price: 'RM 22', image: 'images/ah_po_taufu.png', alt: '麻婆豆腐' },
-            // 面食
-            { id: 10, name: '招牌炒面', category: 'noodles', price: 'RM 18', image: 'images/fry_mee.png', alt: '招牌炒面' },
-            { id: 11, name: '海鲜拉面', category: 'noodles', price: 'RM 25', image: 'images/noodles-seafood.jpg', alt: '海鲜拉面' },
-            { id: 12, name: '牛肉刀削面', category: 'noodles', price: 'RM 22', image: 'images/moo.png', alt: '牛肉刀削面' },
-            // 饭食
-            { id: 13, name: '招牌炒饭', category: 'rice', price: 'RM 18', image: 'images/tomyam_fried_rice.png', alt: '招牌炒饭' },
-            { id: 14, name: '海鲜炒饭', category: 'rice', price: 'RM 25', image: 'images/noodles-seafood.jpg', alt: '海鲜炒饭' },
-            { id: 15, name: '泰式炒饭', category: 'rice', price: 'RM 22', image: 'images/noodles-beef.jpg', alt: '泰式炒饭' },
-            // 饮料
-            { id: 16, name: '招牌老虎', category: 'drinks', price: 'RM 18', image: 'images/tiger_beer_can.png', alt: '招牌老虎' },
-            { id: 17, name: '海鲜炒饭', category: 'rice', price: 'RM 25', image: 'images/noodles-seafood.jpg', alt: '海鲜炒饭' },
-            { id: 18, name: '泰式炒饭', category: 'rice', price: 'RM 22', image: 'images/noodles-beef.jpg', alt: '泰式炒饭' }
-
-        ];  
-
-        // 动态渲染菜品函数 (无变化)
-        function renderDishes(category) {
-            var grid = document.getElementById('dishesGrid');
-            var filtered = category === 'all' ? allDishes : allDishes.filter(function(d) {
-                return d.category === category;
-            });
-            
-            var html = '';
-            for (var i = 0; i < filtered.length; i++) {
-                var dish = filtered[i];
-                var imageContent = '';
-                
-                // 图片路径渲染
-                if (dish.image.length <= 2) { 
-                    imageContent = dish.image; // 渲染 emoji
-                } else {
-                    imageContent = '<img src="' + dish.image + '" alt="' + dish.alt + '">'; // 渲染图片
-                }
-                
-                html += '<div class="dish-card">';
-                html += '  <div class="dish-image">' + imageContent + '</div>';
-                html += '  <div class="dish-info">';
-                html += '    <div class="dish-name">' + dish.name + '</div>';
-                html += '    <div class="dish-price">' + dish.price + '</div>';
-                html += '  </div>';
-                html += '</div>';
-            }
-            grid.innerHTML = html;
-        }
-
-        // 分类按钮点击事件 (无变化)
-        var buttons = document.querySelectorAll('.category-btn');
-        for (var i = 0; i < buttons.length; i++) {
-            buttons[i].addEventListener('click', function() {
-                var allButtons = document.querySelectorAll('.category-btn');
-                for (var j = 0; j < allButtons.length; j++) {
-                    allButtons[j].classList.remove('active');
-                }
-                this.classList.add('active');
-                renderDishes(this.getAttribute('data-category'));
-            });
-        }
-
-        // 导航平滑滚动 (无变化)
-        var navLinks = document.querySelectorAll('a[href^="#"]');
-        for (var i = 0; i < navLinks.length; i++) {
-            navLinks[i].addEventListener('click', function(e) {
-                e.preventDefault();
-                var targetId = this.getAttribute('href');
-                var target = document.querySelector(targetId);
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        }
-
-        // 页面加载后首次渲染全部菜品
-        renderDishes('all');
-    </script>
+    <script src="js/script.js"></script>
 </body>
 </html>

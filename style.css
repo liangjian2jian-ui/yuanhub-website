@@ -1,0 +1,120 @@
+/* ==================== 全局变量 & 基础设置 ==================== */
+:root {
+    --primary-color: #d97706; /* 核心橙色 */
+    --bg-color: #fef3c7;      /* 浅黄背景 */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Microsoft YaHei', 'SimHei', Arial, sans-serif;
+    background: linear-gradient(to bottom, #fffbeb, #fef3c7);
+    color: #333;
+    min-height: 100vh;
+}
+
+/* ==================== Header ==================== */
+header {
+    background: var(--primary-color);
+    position: sticky; top: 0; z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.header-content {
+    max-width: 1200px; margin: 0 auto; padding: 0.8rem 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+}
+
+.logo-img { height: 60px; width: auto; display: block; }
+
+nav { display: flex; gap: 1.5rem; }
+
+nav a {
+    color: var(--primary-color); background: white;
+    text-decoration: none; font-weight: bold; padding: 0.6rem 1.2rem;
+    border-radius: 8px; transition: all 0.3s ease;
+}
+
+nav a:hover { background: #fef3c7; transform: translateY(-2px); }
+
+/* ==================== Mobile Menu ==================== */
+.nav-toggle-checkbox, .menu-toggle, .nav-close-overlay { display: none; }
+
+@media (max-width: 768px) {
+    .menu-toggle { display: block; font-size: 2rem; color: white; cursor: pointer; }
+    .nav-close-overlay {
+        display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0,0,0,0.5); z-index: 998;
+    }
+    nav {
+        display: none; flex-direction: column; position: absolute;
+        top: 75px; right: 20px; background: white; padding: 15px;
+        border-radius: 10px; width: 160px; z-index: 999;
+    }
+    .nav-toggle-checkbox:checked ~ nav { display: flex; }
+    .nav-toggle-checkbox:checked ~ .nav-close-overlay { display: block; }
+    nav a { text-align: center; margin-bottom: 8px; }
+}
+
+/* ==================== Hero ==================== */
+.hero {
+    /* 背景图由 JS 加载 */
+    background-color: #333; background-size: cover; background-position: center;
+    position: relative; padding: 8rem 2rem; text-align: center; color: white;
+}
+.hero::before {
+    content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.4); 
+}
+.hero-content { position: relative; z-index: 1; }
+.hero h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+.hero-btn {
+    background: white; color: var(--primary-color); padding: 12px 30px;
+    border-radius: 50px; text-decoration: none; font-weight: bold;
+    display: inline-block; margin-top: 1rem;
+}
+
+/* ==================== Menu & Dishes ==================== */
+.menu-section { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; }
+.section-title { text-align: center; color: #78350f; font-size: 2.2rem; margin-bottom: 2rem; }
+
+.category-filter { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 30px; }
+.category-btn {
+    padding: 10px 25px; border: none; border-radius: 25px;
+    background: white; color: #b45309; font-weight: bold; cursor: pointer;
+}
+.category-btn.active, .category-btn:hover { background: var(--primary-color); color: white; }
+
+.dishes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
+.dish-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.dish-image { height: 220px; overflow: hidden; position: relative; cursor: zoom-in; }
+.dish-image img { width: 100%; height: 100%; object-fit: cover; transition: 0.3s; }
+.dish-image:hover img { transform: scale(1.1); }
+
+/* 水印 - 注意路径是 ../images */
+.dish-image::after {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: url('../images/yuanhub_logo_clear.png') no-repeat center center;
+    background-size: 150px; opacity: 0.3; pointer-events: none;
+}
+
+.dish-info { padding: 1.5rem; }
+.dish-name { font-size: 1.1rem; font-weight: bold; margin-bottom: 0.5rem; }
+.dish-price { color: var(--primary-color); font-weight: bold; font-size: 1.2rem; }
+
+/* ==================== Contact & Footer ==================== */
+.contact-section { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; }
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+.contact-card { background: white; padding: 2rem; border-radius: 1rem; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.logo-icon-row img { width: 40px; height: 40px; margin: 0 8px; }
+.contact-detail { font-size: 1.1rem; color: #555; margin: 0.5rem 0; }
+footer { text-align: center; padding: 2rem; background: #78350f; color: white; }
+
+/* ==================== Modal (Zoom) ==================== */
+.modal {
+    display: none; position: fixed; z-index: 2000; top: 0; left: 0;
+    width: 100%; height: 100%; background-color: rgba(0,0,0,0.9);
+    justify-content: center; align-items: center;
+}
+.modal-content { max-width: 90%; max-height: 90%; border: 2px solid white; border-radius: 5px; }
+.close-modal { position: absolute; top: 20px; right: 30px; color: white; font-size: 50px; cursor: pointer; }
